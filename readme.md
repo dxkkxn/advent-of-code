@@ -1,5 +1,5 @@
 # My solutions to advent of code 2020
-![picture] (https://raw.githubusercontent.com/dxkkxn/advent-of-code/master/img/capture.PNG)
+![picture](https://raw.githubusercontent.com/dxkkxn/advent-of-code/master/img/capture.PNG)
 
 Just a back up my solutions to advent of code puzzles.
 
