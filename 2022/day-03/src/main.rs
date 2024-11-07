@@ -3,6 +3,14 @@ use std::io::Read;
 
 use std::collections::HashSet;
 
+fn matching_items(ch: &char) -> u32 {
+    match ch {
+        'a'..='z' => *ch as u32 - 96,
+        'A'..='Z' => *ch as u32 - 38,
+        _ => todo!(),
+    }
+}
+
 fn main() -> Result<(), std::io::Error> {
     let mut file = File::open("input.txt")?;
     let mut content = String::new();
@@ -26,11 +34,7 @@ fn main() -> Result<(), std::io::Error> {
             });
             map_first
                 .intersection(&map_second)
-                .map(|ch| match ch {
-                    'a'..='z' => *ch as u32 - 96,
-                    'A'..='Z' => *ch as u32 - 38,
-                    _ => todo!(),
-                })
+                .map(matching_items)
                 .sum::<u32>()
         })
         .sum();
@@ -42,13 +46,10 @@ fn main() -> Result<(), std::io::Error> {
         .chunks(3)
         .map(|a| {
             let res: Vec<HashSet<char>> = a.iter().map(|rs| rs.chars().collect()).collect();
-            res[0].intersection(&res[1])
+            res[0]
+                .intersection(&res[1])
                 .filter(|e| res[2].contains(e))
-                .map(|ch| match ch {
-                    'a'..='z' => *ch as u32 - 96,
-                    'A'..='Z' => *ch as u32 - 38,
-                    _ => todo!(),
-                })
+                .map(matching_items)
                 .sum::<u32>()
         })
         .sum();
